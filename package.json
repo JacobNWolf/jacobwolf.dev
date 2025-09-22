@@ -9,12 +9,14 @@
     "astro": "astro",
     "lint:js": "biome lint",
     "lint:js:fix": "biome lint --write",
+    "lint:ts": "tsgo --noEmit",
     "format": "biome format"
   },
   "dependencies": {
     "astro": "^5.13.10"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.2.4"
+    "@biomejs/biome": "^2.2.4",
+    "@typescript/native-preview": "7.0.0-dev.20250922.1"
   }
 }
