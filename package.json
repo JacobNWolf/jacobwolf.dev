@@ -3,14 +3,15 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "npx astro build && npx wrangler dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "lint:js": "biome lint",
     "lint:js:fix": "biome lint --write",
     "lint:ts": "tsgo --noEmit",
-    "format": "biome format"
+    "format": "biome format",
+    "format:fix": "biome format --write"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.9",
