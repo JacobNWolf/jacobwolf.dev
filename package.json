@@ -13,10 +13,13 @@
     "format": "biome format"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.9",
     "astro": "^5.13.10"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.4",
-    "@typescript/native-preview": "7.0.0-dev.20250922.1"
+    "@typescript/native-preview": "7.0.0-dev.20250922.1",
+    "add": "^2.0.6",
+    "wrangler": "^4.39.0"
   }
 }
