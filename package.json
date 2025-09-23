@@ -10,7 +10,8 @@
     "lint:js": "biome lint",
     "lint:js:fix": "biome lint --write",
     "lint:ts": "tsgo --noEmit",
-    "format": "biome format"
+    "format": "biome format",
+    "format:fix": "biome format --write"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.9",
