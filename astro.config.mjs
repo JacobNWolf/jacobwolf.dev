@@ -12,7 +12,6 @@ export default defineConfig({
   }),
   integrations: [react()],
   vite: {
-    // @ts-expect-error
     plugins: [tailwindcss()],
   },
 });
