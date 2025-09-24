@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+:root {
+  --bg-color: theme("colors.slate.100");
+}
+
+[data-theme="dark"] {
+  --bg-color: theme("colors.zinc.950");
+}
+
+@theme {
+  --font-sans: "Rubik", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --color-background: var(--bg-color);
+  /* Semantic colors: primary → zinc, secondary → neutral, accent → teal */
+  --color-primary: theme("colors.zinc.900");
+  --color-secondary: theme("colors.neutral.800");
+  --color-accent: theme("colors.teal.600");
+
+  /* Primary (zinc) scale */
+  --color-primary-50: theme("colors.zinc.50");
+  --color-primary-100: theme("colors.zinc.100");
+  --color-primary-200: theme("colors.zinc.200");
+  --color-primary-300: theme("colors.zinc.300");
+  --color-primary-400: theme("colors.zinc.400");
+  --color-primary-500: theme("colors.zinc.500");
+  --color-primary-600: theme("colors.zinc.600");
+  --color-primary-700: theme("colors.zinc.700");
+  --color-primary-800: theme("colors.zinc.800");
+  --color-primary-900: theme("colors.zinc.900");
+  --color-primary-950: theme("colors.zinc.950");
+
+  /* Secondary (neutral) scale */
+  --color-secondary-50: theme("colors.neutral.50");
+  --color-secondary-100: theme("colors.neutral.100");
+  --color-secondary-200: theme("colors.neutral.200");
+  --color-secondary-300: theme("colors.neutral.300");
+  --color-secondary-400: theme("colors.neutral.400");
+  --color-secondary-500: theme("colors.neutral.500");
+  --color-secondary-600: theme("colors.neutral.600");
+  --color-secondary-700: theme("colors.neutral.700");
+  --color-secondary-800: theme("colors.neutral.800");
+  --color-secondary-900: theme("colors.neutral.900");
+  --color-secondary-950: theme("colors.neutral.950");
+
+  /* Accent (teal) scale */
+  --color-accent-50: theme("colors.teal.50");
+  --color-accent-100: theme("colors.teal.100");
+  --color-accent-200: theme("colors.teal.200");
+  --color-accent-300: theme("colors.teal.300");
+  --color-accent-400: theme("colors.teal.400");
+  --color-accent-500: theme("colors.teal.500");
+  --color-accent-600: theme("colors.teal.600");
+  --color-accent-700: theme("colors.teal.700");
+  --color-accent-800: theme("colors.teal.800");
+  --color-accent-900: theme("colors.teal.900");
+  --color-accent-950: theme("colors.teal.950");
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* Safelist dynamic text colors used in Typography component */
+@source inline("text-{slate,gray,zinc,neutral,stone,red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose}-{50,{100..900..100},950}");
+@source inline("dark:text-{slate,gray,zinc,neutral,stone,red,orange,amber,yellow,lime,green,emerald,teal,cyan,sky,blue,indigo,violet,purple,fuchsia,pink,rose}-{50,{100..900..100},950}");
+@source inline("dark:text-[var(--color-background)]");
+
+.root {
+  isolation: isolate;
+}
+
+/* Typewriter component */
+.tw-typewriter {
+  position: relative;
+}
+
+@keyframes tw-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.tw-caret--blink {
+  animation: tw-blink 1s steps(2, start) infinite;
+}

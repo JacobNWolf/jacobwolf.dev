@@ -1,0 +1,27 @@
+---
+import ThemeToggle from '~/components/ThemeToggle';
+import Typography from '~/components/Typography';
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-primary-200 dark:border-secondary-800 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="container flex h-16 max-w-screen-xl mx-auto items-center justify-between px-4">
+        <div class="flex items-center gap-8">
+            <a href="/" class="flex flex-row gap-2 group">
+                <Typography
+                    as="span"
+                    token="font-bold/text/2xl"
+                    color="primary"
+                    colorWeight={800}
+                    darkColor="secondary"
+                    darkColorWeight={100}
+                    className="transition-colors duration-300 group-hover:text-accent-600 dark:group-hover:text-accent-600"
+                >
+                    Jacob Wolf
+                </Typography>
+            </a>
+        </div>
+        <div class="flex items-center">
+            <ThemeToggle client:only="react" />
+        </div>
+    </div>
+</header>
