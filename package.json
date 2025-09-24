@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "npx astro build && npx wrangler dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -11,22 +11,25 @@
     "lint:js:fix": "biome lint --write",
     "lint:ts": "tsgo --noEmit",
     "format": "biome format --write",
+    "format:fix": "biome format --write",
     "prepare": "husky",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "**/*": [
       "pnpm lint:js:fix",
-      "pnpm format"
+      "pnpm format:fix"
     ]
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.9",
     "astro": "^5.13.10"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.4",
     "@typescript/native-preview": "7.0.0-dev.20250922.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.0"
+    "lint-staged": "^16.2.0",
+    "wrangler": "^4.39.0"
   }
 }

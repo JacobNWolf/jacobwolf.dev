@@ -6,8 +6,8 @@
     "useIgnoreFile": false
   },
   "files": {
-    "ignoreUnknown": true,
-    "includes": ["**/*", "!node_modules/**/*", "!**/*.astro", ".astro/**/*"]
+    "ignoreUnknown": false,
+    "includes": ["**/*", "!node_modules/**/*", "!dist/**/*", "!.wrangler/**/*", "!.astro/**/*"]
   },
   "formatter": {
     "enabled": true,
@@ -62,8 +62,43 @@
     "enabled": true,
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ":NODE:",
+              ["astro", "@astro/*", "@astrojs/*"],
+              ["react", "react-dom", "react/*"],
+              ":PACKAGE:",
+              ":PACKAGE_WITH_PROTOCOL:",
+              ":BLANK_LINE:",
+              ":ALIAS:",
+              ":PATH:",
+              ":URL:"
+            ]
+          }
+        }
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.astro"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useConst": "off",
+            "useImportType": "off"
+          },
+          "correctness": {
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off"
+          }
+        }
+      },
+      "assist": {
+        "enabled": false
+      }
+    }
+  ]
 }
