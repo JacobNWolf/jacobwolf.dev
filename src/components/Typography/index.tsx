@@ -56,6 +56,11 @@ export enum TailwindColor {
   stone = 'stone',
 }
 
+const colorAlias = new Map<string, TailwindColor>([
+  ['primary', TailwindColor.zinc],
+  ['secondary', TailwindColor.neutral],
+]);
+
 export type TailwindColorType = keyof typeof TailwindColor;
 
 export const FONT_SIZE_MAP: Record<FontSize, string> = {
@@ -172,11 +177,6 @@ export const Typography: React.FC<TypographyProps> = ({
   } else {
     tokenProps = { size: size || 'base', weight: weight || 'normal' };
   }
-
-  const colorAlias = new Map<string, TailwindColor>([
-    ['primary', TailwindColor.zinc],
-    ['secondary', TailwindColor.neutral],
-  ]);
 
   let resolvedColor = '';
   if (color) {

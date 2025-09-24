@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
+import { isEqual } from 'es-toolkit/compat';
 
 interface TypewriterProps {
   texts: string[];
@@ -38,37 +40,51 @@ const useTypewriter = ({
   const charPosRef = useRef(0);
   const timeoutRef = useRef<number | null>(null);
   const phaseRef = useRef<Phase>('typing');
+  const previousTextsRef = useRef<string[]>([]);
 
-  const setPhaseSafely = (p: Phase) => {
+  const memoizedTexts = useMemo(() => {
+    if (!isEqual(texts, previousTextsRef.current)) {
+      previousTextsRef.current = [...texts];
+    }
+    return previousTextsRef.current;
+  }, [texts]);
+
+  const setPhaseSafely = useCallback((p: Phase) => {
     phaseRef.current = p;
     setPhase(p);
-  };
+  }, []);
 
-  const clear = () => {
+  const clear = useCallback(() => {
     if (timeoutRef.current) {
       window.clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
-  };
+  }, []);
 
-  const schedule = (fn: () => void, delay: number) => {
-    clear();
-    timeoutRef.current = window.setTimeout(fn, delay);
-  };
+  const schedule = useCallback(
+    (fn: () => void, delay: number) => {
+      clear();
+      timeoutRef.current = window.setTimeout(fn, delay);
+    },
+    [clear],
+  );
 
-  const jitter = (base: number, apply: boolean) => {
-    if (!apply || speedVariance <= 0) return base;
-    const variance = base * speedVariance;
-    const min = Math.max(10, base - variance);
-    const max = base + variance;
-    return Math.round(Math.random() * (max - min) + min);
-  };
+  const jitter = useCallback(
+    (base: number, apply: boolean) => {
+      if (!apply || speedVariance <= 0) return base;
+      const variance = base * speedVariance;
+      const min = Math.max(10, base - variance);
+      const max = base + variance;
+      return Math.round(Math.random() * (max - min) + min);
+    },
+    [speedVariance],
+  );
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: We do not want this to run on every prop change as several are stable values
   useEffect(() => {
-    if (!texts || texts.length === 0) return;
+    if (!memoizedTexts || memoizedTexts.length === 0) return;
 
-    const currentWord = texts[index] || '';
+    const currentWord = memoizedTexts[index] || '';
     const isLastCycle = !loop && index === texts.length - 1;
 
     const run = () => {
@@ -109,7 +125,7 @@ const useTypewriter = ({
           break;
         }
         case 'pausingAfterDelete': {
-          const nextIndex = (index + 1) % texts.length;
+          const nextIndex = (index + 1) % memoizedTexts.length;
           setIndex(nextIndex);
           charPosRef.current = 0;
           setPhaseSafely('typing');
@@ -121,9 +137,21 @@ const useTypewriter = ({
 
     run();
     return clear;
-  }, [texts, index, speed, deleteSpeed, pauseBeforeDelete, pauseBeforeType, loop, speedVariance, randomizeDeleteSpeed]);
+  }, [
+    memoizedTexts,
+    index,
+    speed,
+    deleteSpeed,
+    pauseBeforeDelete,
+    pauseBeforeType,
+    loop,
+    setPhaseSafely,
+    clear,
+    schedule,
+    jitter,
+  ]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: We only want to reset when texts change
+  // biome-ignore lint/correctness/useExhaustiveDependencies: We intentionally only want to reset when the texts array reference changes
   useEffect(() => {
     setText('');
     setIsDeleting(false);
@@ -131,7 +159,7 @@ const useTypewriter = ({
     charPosRef.current = 0;
     phaseRef.current = 'typing';
     setPhase('typing');
-  }, [JSON.stringify(texts)]);
+  }, [memoizedTexts]);
 
   return { text, isDeleting, index, phase };
 };
