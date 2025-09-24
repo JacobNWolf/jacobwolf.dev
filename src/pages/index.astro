@@ -1,30 +1,8 @@
 ---
-import ThemeToggle from '~/components/ThemeToggle';
-import Typewriter from '~/components/Typewriter/Typewriter';
 import Layout from '~/layouts/Layout.astro';
-
-const typewriterTexts = [
-  'React apps',
-  'Great developer experiences',
-  'Ruby on Rails apps',
-  'Node.js apps',
-  'WordPress sites',
-  'Native integrations',
-];
+import Hero from '~/components/Hero/index.astro';
 ---
 
 <Layout>
-	<ThemeToggle className="absolute top-4 right-4" client:only="react" />
-	<Typewriter 
-		texts={typewriterTexts}
-		speed={60}
-		deleteSpeed={30}
-		speedVariance={0.3}
-		randomizeDeleteSpeed
-		pauseBeforeDelete={900}
-		pauseBeforeType={420}
-		loop
-		className="text-4xl font-semibold text-gray-900 dark:text-white"
-		client:only="react"
-	/>
+  <Hero />
 </Layout>

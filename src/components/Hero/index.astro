@@ -1,0 +1,49 @@
+---
+import Terminal from '~/components/Terminal/index.astro';
+import Typography from '~/components/Typography';
+---
+
+<section class="min-h-screen flex items-center justify-center px-4 py-20">
+  <div class="container max-w-screen-xl">
+    <div class="flex flex-col items-center gap-8 text-center">
+      <div class="flex flex-col gap-4">
+        <Typography
+          as="h1"
+          token="font-bold/text/7xl"
+          color="primary"
+          colorWeight={800}
+          darkColor="secondary"
+          darkColorWeight={100}
+          className="text-balance"
+        >
+          Hi, I'm{' '}
+          <Typography
+            as="span"
+            token="font-bold/text/7xl"
+            color="teal"
+            colorWeight={600}
+            darkColor="teal"
+            darkColorWeight={500}
+            className="inline"
+          >
+            Jacob Wolf
+          </Typography>
+        </Typography>
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+          <Typography
+            as="span"
+            token="font-bold/text/4xl"
+            color="primary"
+            colorWeight={800}
+            darkColor="secondary"
+            darkColorWeight={100}
+          >
+            I build
+          </Typography>
+          <Terminal />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

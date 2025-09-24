@@ -3,6 +3,8 @@ import '@fontsource-variable/jetbrains-mono';
 import '@fontsource-variable/rubik';
 
 import '../styles/global.css';
+
+import Header from '~/components/Header/index.astro';
 ---
 
 <!doctype html>
@@ -25,8 +27,9 @@ import '../styles/global.css';
 			});
 		</script>
 	</head>
-	<body>
+	<body class="bg-background">
 		<div class="root">
+			<Header />
 			<slot />
 		</div>
 	</body>

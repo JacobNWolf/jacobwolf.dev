@@ -21,9 +21,12 @@ const Typewriter: React.FC<TypewriterProps> = (props) => {
   const isBlinking = phase === 'pausingAfterType' || phase === 'pausingAfterDelete';
 
   return (
-    <span className={cn(props.className, 'font-code inline-block gap-1')}>
+    <span className={cn(props.className, 'font-mono inline-block gap-1')}>
       {text}
-      <span className={cn('tw-caret inline-block', isBlinking && 'tw-caret--blink')} aria-hidden="true">
+      <span
+        className={cn('tw-caret inline-block text-accent-600 dark:text-accent-600', isBlinking && 'tw-caret--blink')}
+        aria-hidden="true"
+      >
         {cursor}
       </span>
     </span>

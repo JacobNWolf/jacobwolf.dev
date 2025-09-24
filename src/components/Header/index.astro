@@ -1,0 +1,14 @@
+---
+import ThemeToggle from '../ThemeToggle';
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="container flex h-16 max-w-screen-xl items-center justify-between px-4">
+        <div class="flex items-center gap-8">
+            <a href="#" class="flex flex-row gap-2 group">
+                <span class="font-bold text-xl group-hover:text-primary transition-colors duration-200">Jacob Wolf</span>
+            </a>
+        </div>
+        <ThemeToggle client:only="react" />
+    </div>
+</header>
