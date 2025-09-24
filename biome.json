@@ -68,7 +68,7 @@
           "options": {
             "groups": [
               ":NODE:",
-              ["astro", "@astro/*", "@astrojs/*", "astro/*"],
+              ["astro", "@astro/*", "@astrojs/*", "astro/*", "astro-*"],
               ["react", "react-dom", "react/*"],
               ":BLANK_LINE:",
               ":PACKAGE:",
