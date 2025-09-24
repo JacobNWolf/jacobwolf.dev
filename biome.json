@@ -55,7 +55,7 @@
       "lineWidth": 120
     },
     "linter": {
-      "enabled": true
+      "enabled": false
     }
   },
   "assist": {
@@ -67,8 +67,9 @@
           "options": {
             "groups": [
               ":NODE:",
-              ["astro", "@astro/*", "@astrojs/*"],
+              ["astro", "@astro/*", "@astrojs/*", "astro/*"],
               ["react", "react-dom", "react/*"],
+              ":BLANK_LINE:",
               ":PACKAGE:",
               ":PACKAGE_WITH_PROTOCOL:",
               ":BLANK_LINE:",

@@ -3,9 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "npx astro build && npx wrangler dev",
+    "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "npx astro build && npx wrangler dev",
     "astro": "astro",
     "lint:js": "biome lint",
     "lint:js:fix": "biome lint --write",
@@ -23,7 +23,17 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.9",
-    "astro": "^5.13.10"
+    "@astrojs/react": "^4.3.1",
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/rubik": "^5.2.8",
+    "@tailwindcss/vite": "^4.1.13",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "astro": "^5.13.10",
+    "clsx": "^2.1.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.4",

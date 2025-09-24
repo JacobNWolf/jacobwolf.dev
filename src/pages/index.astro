@@ -1,11 +1,21 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { Typewriter } from '~/components/Typewriter';
+import Layout from '~/layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const typewriterTexts = ['React apps', 'Ruby on Rails apps', 'Node.js apps', 'WordPress sites', 'Native integrations'];
 ---
 
 <Layout>
-	<Welcome />
+	<Typewriter 
+		texts={typewriterTexts}
+		speed={60}
+		deleteSpeed={30}
+		speedVariant={0.3}
+		randomizeDeleteSpeed
+		pauseBeforeDelete={900}
+		pauseBeforeType={420}
+		loop
+		className="text-4xl font-semibold"
+		client:only="react"
+	/>
 </Layout>
